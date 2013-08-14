@@ -15,7 +15,8 @@
             endless: true,
             onType: $.noop,
             afterAll: $.noop,
-            afterPhrase: $.noop
+            afterPhrase: $.noop,
+            onEnd:$.noop
         }, options || text);
 
         text = $.isPlainObject(text) ? options.text : text;
@@ -47,6 +48,7 @@
                     i++;
 
                     if (i === text.length && !options.endless) {
+                        options.onEnd();
                         return;
                     } else if (i === text.length) {
                         i = 0;
